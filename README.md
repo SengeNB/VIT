@@ -35,11 +35,17 @@ Defines the Vision Transformer model and training/validation functions.
 ### 3. `datasets.py`
 Handles dataset loading, preprocessing, and augmentation.
 
-- **Features**:
-  - `TiffDataset`: Custom dataset class for `.tif` images.
+- **Key Features**:
+  - **Label Mapping**:
+    - In the current implementation, class numbers `1` and `2` are mapped to label `1`, while all other class numbers are mapped to label `0`. This is defined in the `TiffDataset` class.
+    - If you need to change this mapping, modify the `TiffDataset` class in `datasets.py`:
+      ```python
+      label = 1 if class_num in [1, 2] else 0
+      ```
   - `custom_transform`: Augmentation logic for data augmentation.
   - `load_dataset`: Splits dataset into training and validation sets.
   - Utilities for checking dataset integrity.
+
 
 ### 4. `predict_all.py`
 Predicts labels for an entire dataset and computes evaluation metrics.
