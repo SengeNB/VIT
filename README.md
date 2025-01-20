@@ -59,11 +59,32 @@ Predicts the label and confidence score for a single image.
 ## **How to Use**
 
 ### **1. Training the Model**
-1. Prepare your `.tif` dataset:
-   - Place files in a folder (e.g., `./data/`).
-   - Use the naming format: `image_<class>.tif` (e.g., `image_1.tif`).
-   - Class numbers `1` and `2` are mapped to label `1`, all others to `0`.
 
-2. Set the dataset path in `train.py`:
+1. Set the dataset path in `train.py`:
    ```python
    path = "./path_to_your_dataset"
+2. Run the training script:
+   python train.py
+3. Training outputs:
+   - Best models: best_val_loss_model.pth and best_val_acc_model.pth.
+   - Metrics: training_metrics.csv.
+   - Plots: Saved in runs/runX/.
+
+### **2. Making Predictions**
+  For an Entire Dataset:
+  1. Set the dataset path and model path in predict_all.py:
+     model_path = "./path_to_trained_model.pth"
+     image_folder = "./path_to_dataset/"
+  2. Run the script:
+    python predict_all.py
+  3. Outputs:
+     Accuracy, precision, recall, and average confidence scores.
+     
+  For a Single Image:
+  1. Set the model path in predict.py
+     model_path = "./path_to_trained_model.pth"
+  2. Run the script:
+     python predict.py
+  3. Outputs:
+     Predicted label and confidence score.
+     
