@@ -69,30 +69,26 @@ def custom_transform(image):
     image = random_blur(image)
     return image
 
-def load_dataset(path, num_classes=2, split_ratio=0.8):
+def load_dataset(train_path, valid_path, num_classes=2):
     train_transform = custom_transform
     val_transform = None
-    dataset = TiffDataset(path, transform=None)
     
-    # 按 8:2 比例划分训练集和验证集
-    train_size = int(split_ratio * len(dataset))
-    val_size = len(dataset) - train_size
-    train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
+    train_dataset = TiffDataset(train_path, transform=train_transform)
+    val_dataset = TiffDataset(valid_path, transform=val_transform)
+
+    total_train_files = len(train_dataset)
+    total_valid_files = len(val_dataset)
+    class0_count_train = sum(1 for label in train_dataset.labels if label == 0)
+    class1_count_train = sum(1 for label in train_dataset.labels if label == 1)
+    class0_count_valid = sum(1 for label in val_dataset.labels if label == 0)
+    class1_count_valid = sum(1 for label in val_dataset.labels if label == 1)
     
-    # 为训练集和验证集分别应用不同的转换
-    train_dataset.dataset.transform = train_transform
-    val_dataset.dataset.transform = val_transform
-    
-    # 输出统计信息
-    total_files = len(dataset)
-    class0_count = sum(1 for label in dataset.labels if label == 0)
-    class1_count = sum(1 for label in dataset.labels if label == 1)
-    
-    print(f"total files number: {total_files}")
-    print(f"Class 0 files number: {class0_count}")
-    print(f"Class 1 files number: {class1_count}")
-    print(f"train datasets files number: {train_size}")
-    print(f"valid datasets files number: {val_size}")
+    print(f"Train files number: {total_train_files}")
+    print(f"Valid files number: {total_valid_files}")
+    print(f"Train Class 0 files number: {class0_count_train}")
+    print(f"Train Class 1 files number: {class1_count_train}")
+    print(f"Valid Class 0 files number: {class0_count_valid}")
+    print(f"Valid Class 1 files number: {class1_count_valid}")
     
     return train_dataset, val_dataset
 
