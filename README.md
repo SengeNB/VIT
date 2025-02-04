@@ -71,7 +71,8 @@ Copying files, rather than moving them, guarantees that the original data set wi
 
 1. Set the dataset path in `train.py`:
    ```python
-   path = "./path_to_your_dataset"
+   train_path = r""  # replace your train folder address
+   valid_path = r""  # replace your valid folder address
 2. Run the training script:
    python train.py
 3. Training outputs:
