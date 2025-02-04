@@ -17,8 +17,9 @@ def main():
     
     #path = "./dataset_without3"
     #path = "./dataset_full"
-    path = "./ALL_DATA/FULL_TRAINING_SET_NEW"
-    train_dataset, val_dataset = load_dataset(path)
+    train_path = r"C:\Users\16074\Desktop\tiger\ALL_DATA\train"  # replace your train file 
+    valid_path = r"C:\Users\16074\Desktop\tiger\ALL_DATA\valid"  # replace your valid file 
+    train_dataset, val_dataset = load_dataset(train_path, valid_path)
     # dataset = TiffDataset(path)
 
     # if dataset.check_image_names():
