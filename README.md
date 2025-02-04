@@ -61,6 +61,9 @@ Predicts labels for an entire dataset and computes evaluation metrics.
 Predicts the label and confidence score for a single image.
 
 ---
+### 6. `split_train_valid.py`
+Sort all the images in a folder by a fixed seed to ensure reproducible results.
+Copying files, rather than moving them, guarantees that the original data set will not be modified. Create the train and valid destination folders and copy the corresponding images into them.
 
 ## **How to Use**
 
